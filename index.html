@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101114">
+  <meta name="description" content="A smarter place to find your next movie, show, game, or album.">
+  <title>Orbit — Your entertainment, in sync</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Orbit home"><span class="brand-mark">◉</span><span>orbit<span class="brand-period">.</span></span></a>
+      <p class="nav-label">YOUR SPACE</p>
+      <nav class="main-nav">
+        <a class="nav-link active" href="#home" data-view="home"><span class="nav-icon">⌂</span> Discover</a>
+        <a class="nav-link" href="#saved" data-view="saved"><span class="nav-icon">♡</span> Your list <span class="nav-count" id="saved-count">0</span></a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-note"><span class="live-dot"></span><div><strong>Your next favorite?</strong><small>Let's find it together.</small></div></div>
+        <button class="sidebar-ai" id="open-assistant"><span class="sparkle">✳</span> Ask Orbit <span class="arrow">↗</span></button>
+        <p class="sidebar-foot">A little more <span>you</span> in every pick.</p>
+      </div>
+    </aside>
+
+    <main id="home" class="main-content">
+      <header class="topbar">
+        <div class="mobile-brand"><span class="brand-mark">◉</span> orbit<span class="brand-period">.</span></div>
+        <div class="topbar-note"><span class="live-dot"></span> YOUR PERSONAL ENTERTAINMENT SPACE</div>
+        <button class="topbar-assistant" id="open-assistant-top"><span>✳</span> Ask Orbit</button>
+      </header>
+
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> YOUR WORLD, WELL PLAYED</p>
+          <h1 id="hero-title">Good taste.<br><span>Great next pick.</span></h1>
+          <p class="hero-subtitle">Movies, shows, games, and music worth your time. Tell us your mood—we'll find your next thing.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#discover">Explore the collection <span>↓</span></a>
+            <button class="button button-quiet" id="surprise-button"><span>✳</span> Surprise me</button>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit-ring ring-one"></div><div class="orbit-ring ring-two"></div>
+          <div class="planet planet-main"><span>✦</span></div><div class="planet planet-small"></div>
+          <div class="art-label label-one">A GOOD NIGHT IN</div><div class="art-label label-two">PICKED FOR YOU · 01</div>
+          <div class="art-spark spark-one">✳</div><div class="art-spark spark-two">✦</div>
+        </div>
+        <div class="hero-bottom"><span>01 — 04</span><span class="hero-bottom-rule"></span><span>CURATED FOR YOUR CURIOSITY</span></div>
+      </section>
+
+      <section class="discovery-section" id="discover" aria-labelledby="collection-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">THE GOOD STUFF</p><h2 id="collection-title">Find your next <span>favorite.</span></h2></div>
+          <p class="collection-count" id="result-count">A handpicked collection</p>
+        </div>
+        <div class="toolbar">
+          <label class="search-box"><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="Search titles, moods, genres..." autocomplete="off" aria-label="Search entertainment"></label>
+          <div class="filters" role="group" aria-label="Filter by format">
+            <button class="filter-chip selected" data-filter="All">Everything</button>
+            <button class="filter-chip" data-filter="Movie">Movies</button>
+            <button class="filter-chip" data-filter="Series">Series</button>
+            <button class="filter-chip" data-filter="Game">Games</button>
+            <button class="filter-chip" data-filter="Album">Music</button>
+          </div>
+        </div>
+        <div class="mood-row"><span class="mood-label">I'M IN THE MOOD FOR</span>
+          <button class="mood-chip" data-mood="cozy">☁ Cozy</button><button class="mood-chip" data-mood="mind-bending">◎ Mind-bending</button><button class="mood-chip" data-mood="laugh">↗ A laugh</button><button class="mood-chip" data-mood="adventure">✦ Adventure</button><button class="mood-chip" data-mood="focus">♫ Focus</button>
+        </div>
+        <div class="card-grid" id="card-grid" aria-live="polite"></div>
+        <div class="empty-state hidden" id="empty-state"><span>◌</span><h3>No orbit matches yet.</h3><p>Try a different search or clear the filters.</p><button class="button button-secondary" id="clear-filters">Clear filters</button></div>
+      </section>
+
+      <section class="assistant-banner">
+        <div class="banner-icon">✳</div><div><p class="eyebrow">NOT SURE WHAT YOU WANT?</p><h2>Tell Orbit your <span>mood.</span></h2><p>“Something clever, under two hours, with a happy ending.”</p></div><button class="button button-primary" id="banner-assistant">Let's talk <span>↗</span></button>
+      </section>
+      <footer><a class="brand footer-brand" href="#home"><span class="brand-mark">◉</span><span>orbit<span class="brand-period">.</span></span></a><span>Made for your next great moment.</span><a href="#home">Back to top ↑</a></footer>
+    </main>
+  </div>
+
+  <div class="overlay hidden" id="assistant-overlay" role="dialog" aria-modal="true" aria-labelledby="assistant-title">
+    <section class="assistant-panel">
+      <header class="panel-header"><div class="assistant-heading"><span class="assistant-avatar">✳</span><div><h2 id="assistant-title">Ask Orbit</h2><p><span class="live-dot"></span> Your personal discovery guide</p></div></div><button class="icon-button" data-close="assistant-overlay" aria-label="Close assistant">×</button></header>
+      <div class="chat-body" id="chat-body" aria-live="polite"><div class="chat-message assistant-message"><span class="message-avatar">✳</span><div class="message-bubble"><p>Hey there! What's the vibe? Tell me what you feel like watching, playing, or listening to and I'll find a few ideas.</p><div class="suggestion-row"><button class="suggestion-chip">Something cozy</button><button class="suggestion-chip">Surprise me</button><button class="suggestion-chip">Help me focus</button></div></div></div></div>
+      <form class="chat-form" id="chat-form"><label class="sr-only" for="chat-input">Tell Orbit what you're in the mood for</label><input id="chat-input" type="text" placeholder="Tell me what you're in the mood for..." autocomplete="off" maxlength="240"><button type="submit" aria-label="Send message">↑</button></form><p class="assistant-disclaimer">Orbit's picks use a small built-in collection—not live or personalized AI. Your saved list stays on this device.</p>
+    </section>
+  </div>
+
+  <div class="overlay hidden" id="detail-overlay" role="dialog" aria-modal="true" aria-labelledby="detail-title"><section class="detail-panel"><button class="icon-button detail-close" data-close="detail-overlay" aria-label="Close details">×</button><div class="detail-art" id="detail-art"></div><div class="detail-copy"><p class="eyebrow" id="detail-meta"></p><h2 id="detail-title"></h2><p id="detail-description"></p><div class="detail-tags" id="detail-tags"></div><button class="button button-primary" id="detail-save">♡ Add to your list</button></div></section></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <noscript><div class="noscript">Orbit needs JavaScript enabled to show your collection.</div></noscript>
+</body>
+</html>
